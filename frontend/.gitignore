@@ -1,0 +1,40 @@
+# Node
+node_modules/
+
+# Yarn
+yarn-error.log
+
+# npm
+npm-debug.log
+
+# macOS
+.DS_Store
+
+# Log files
+logs
+*.log
+
+# Dependencies
+/dist
+/tmp
+/out-tsc
+
+# ESLint artifact
+/eslintcache
+
+# SASS
+.sass-cache
+
+# TypeScript
+*.tsbuildinfo
+
+# IDE files
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# OS generated files
+ehthumbs.db
+Thumbs.db
