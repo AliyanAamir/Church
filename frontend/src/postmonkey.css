@@ -44147,3 +44147,17 @@ input[type="file"] {
     align-items: center;
     justify-content: center;
 }
+
+
+.cus-tool{
+  color:#9d0000
+}
+.cus-outer{
+  /* display:none   !important; */
+  opacity: 0;
+}
+.cus-parent:hover .cus-outer{
+  /* display: flex !important; */
+  opacity: 1;
+  transition: all 0.3s ease-in-out;
+}

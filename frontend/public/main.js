@@ -133,40 +133,7 @@ $(document).ready(function () {
 	/*==============================
 	Carousel
 	==============================*/
-	$('.section__carousel').owlCarousel({
-		mouseDrag: true,
-		touchDrag: true,
-		dots: true,
-		loop: true,
-		autoplay: false,
-		smartSpeed: 600,
-		margin: 20,
-		autoHeight: true,
-		responsive: {
-			0 : {
-				items: 2,
-			},
-			576 : {
-				items: 3,
-			},
-			768 : {
-				items: 3,
-				margin: 30,
-			},
-			992 : {
-				items: 4,
-				margin: 30,
-			},
-			1200 : {
-				items: 5,
-				margin: 30,
-				dots: false,
-				mouseDrag: true,
-				slideBy: 6,
-				smartSpeed: 400,
-			},
-		}
-	});
+	
 
 	/*==============================
 	Interview

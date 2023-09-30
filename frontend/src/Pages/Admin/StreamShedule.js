@@ -1,183 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
-
-
-
+import Schedule from "../../Components/Admin/Schedule";
 
 export default function StreamShedule() {
-  // const [button_Class, setbutton_Class] = useState({
-  //   class: "btn-primary",
-  //   text: "Start Streaming",
-  // });
-  // const videoRef = useVideo();
-  // const videoSrc = "http://localhost:8080/hls/abdi.m3u8";
-  // const mediaRecorderRef = useRef(null);
-  // const recordedChunksRef = useRef([]);
-  // const [isRecording, setIsRecording] = useState(false);
-
-  // useEffect(() => {
-  //   const video = videoRef.current;
-  //   if (!video) return;
-
-  //   const Hls = window.Hls;
-
-  //   const handleCanPlay = () => {
-  //     video.currentTime = video.duration;
-  //     video.removeEventListener("canplay", handleCanPlay);
-  //   };
-
-  //   video.addEventListener("canplay", handleCanPlay);
-
-  //   if (Hls.isSupported()) {
-  //     const hls = new Hls();
-  //     hls.loadSource(videoSrc);
-  //     hls.attachMedia(video);
-  //     console.log(videoSrc);
-  //     console.log("HLS supported");
-  //   } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-  //     video.src = videoSrc;
-  //     console.log(videoSrc);
-  //     console.log("HLS not supported");
-  //   }
-
-  //   return () => {
-  //     video.removeEventListener("canplay", handleCanPlay);
-  //   };
-  // }, [videoRef, videoSrc]);
-
-  // const startRecording = () => {
-    // const stream = videoRef.current.captureStream();
-    // mediaRecorderRef.current = new MediaRecorder(stream);
-
-    // mediaRecorderRef.current.ondataavailable = (event) => {
-    //   if (event.data.size > 0) {
-    //     recordedChunksRef.current.push(event.data);
-    //   }
-    // };
-
-    // mediaRecorderRef.current.onstop = () => {
-    //   const blob = new Blob(recordedChunksRef.current, { type: "video/webm" });
-    //   const url = URL.createObjectURL(blob);
-    //   const a = document.createElement("a");
-    //   document.body.appendChild(a);
-    //   a.style = "display: none";
-    //   a.href = url;
-    //   a.download = "recorded-video.webm";
-    //   a.click();
-    //   URL.revokeObjectURL(url);
-    //   recordedChunksRef.current = [];
-    // };
-    // mediaRecorderRef.current.onstop = () => {
-    //   const blob = new Blob(recordedChunksRef.current, { type: "video/webm" });
-    
-    //   // Create a FormData object to send the blob to the server
-    //   const formData = new FormData();
-    //   formData.append("videoBlob", blob);
-    
-    //   // Make a POST request to the /download endpoint on the server
-    //   fetch(process.env.REACT_APP_BACK_URL +"/download", {
-    //     method: 'POST',
-    //     body: formData,
-    //   })
-    //   .then((response) => {
-    //     if (response.status === 200) {
-    //       // File uploaded and saved successfully
-    //       console.log('File uploaded and saved successfully.');
-    //     } else {
-    //       // Handle any errors here
-    //       console.error('Error uploading file:', response.statusText);
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     console.error('Fetch error:', error);
-    //   });
-    
-    //   recordedChunksRef.current = [];
-    // };
-
-    // mediaRecorderRef.current.start();
-    // setIsRecording(true);
-  // };
-
-  // const stopRecording = () => {
-  //   if (mediaRecorderRef.current && isRecording) {
-  //     mediaRecorderRef.current.stop();
-  //     setIsRecording(false);
-  //   }
-  // };
- 
-  
-
-  // function  streaming() {
-  //   setbutton_Class((prevState) => {
-  //     if (prevState.class === "btn-primary") {
-  //       return {
-  //         class: "btn-danger",
-  //         text: "Stop Streaming",
-  //       };
-  //     } else {
-  //       return {
-  //         class: "btn-primary",
-  //         text: "Start Streaming",
-  //       };
-  //     }
-  //   });
-  //   var data = {};
-  //   if (button_Class.class === "btn-primary") {
-  //     data = {
-  //       stream: 1,
-  //     };
-  //     startRecording()
-  //   } else {
-  //     data = {
-  //       stream: 0,
-  //     };
-  //     stopRecording()
-  //   }
-  //   Axios.post(process.env.REACT_APP_BACK_URL + "/streaming", data)
-  //     .then((response) => {
-  //       console.log(response.data);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error:", error);
-  //     });
-  // }
-  // function makePostRequest() {
-  //   Axios.post(process.env.REACT_APP_BACK_URL + "/get_stream")
-  //     .then((response) => {
-  //       console.log(response.data.streaming);
-  //       var live_rep = response.data.streaming;
-  //       setbutton_Class(() => {
-  //         if (live_rep === 1) {
-  //           return {
-  //             class: "btn-danger",
-  //             text: "Stop Streaming",
-  //           };
-  //         } else {
-  //           return {
-  //             class: "btn-primary",
-  //             text: "Start Streaming",
-  //           };
-  //         }
-  //       });
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error:", error);
-  //     });
-  // }
-
-  // Set up an interval to call the function every second
-  // setInterval(()=>makePostRequest, 10000);
-
   return (
     <>
-     <video
-                src=""
-                controls
-                autoPlay
-                // ref={videoRef}
-                muted
-                style={{display:"none" }}
-              ></video>
+      <video
+        src=""
+        controls
+        autoPlay
+        // ref={videoRef}
+        muted
+        style={{ display: "none" }}
+      ></video>
       <main className="main">
         <div className="container-fluid">
           <div className="row justify-content-center">
@@ -221,11 +55,9 @@ export default function StreamShedule() {
               </div>
             </div>
             {/* <!-- end main title --> */}
-            <div className="col-12 my-5">
-              
-            </div>
-            <div className="col-lg-8">
-              <div id="calendar" className="nk-calendar"></div>
+            
+            <div className="col-lg-12">
+              <Schedule />
             </div>
             {/* <!-- end dashbox --> */}
             <div className="modal fade" tabindex="-1" role="dialog" id="region">

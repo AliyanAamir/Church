@@ -12,7 +12,7 @@ urlpatterns = [
     path('changepassword/', UserChangePasswordView.as_view(), name='changepassword'),
     path('send-reset-password-email/', SendPasswordResetEmailView.as_view(), name='send-reset-password-email'),
     path('reset-password/<uid>/<token>/', UserPasswordResetView.as_view(), name='reset-password'),
-     path('approve/<pk>/', UserViewSet.as_view({'post': 'approve'}), name='user-approve'),
+    path('approve/<pk>/', UserViewSet.as_view({'post': 'approve'}), name='user-approve'),
     # Add the paths for standard CRUD operations using the router
     path('', include(router.urls)),
 

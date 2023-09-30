@@ -1,10 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function Edit_users() {
   const params= useParams()
   const [userData,setUserData] = useState()
+  const navigate = useNavigate()
   useEffect(() => {
     axios
     .get(`http://localhost:8000/api/user/${params.id}/`)
@@ -13,7 +14,14 @@ export default function Edit_users() {
     });
     
   }, []);
-  
+  function deleteUser(id) {
+    axios
+    .delete(`http://localhost:8000/api/user/${id}/`)
+    .then(function (response) {
+      alert('User has been Deleted');
+      navigate('/admin/User/')
+    });
+    };
   return (
     <>
       <main className="main">
@@ -25,12 +33,10 @@ export default function Edit_users() {
                 <h2>Edit user</h2>
               </div>
             </div>
-            {/* <!-- end main title --> */}
-
-            {/* <!-- profile --> */}
+           
             <div className="col-12">
               <div className="profile__content">
-                {/* <!-- profile user --> */}
+                
                 <div className="profile__user">
                   <div className="profile__avatar">
                     <img src="/img/user.svg" alt="" />
@@ -43,9 +49,7 @@ export default function Edit_users() {
                     <span>Member ID: 23562</span>
                   </div>
                 </div>
-                {/* <!-- end profile user --> */}
-
-                {/* <!-- profile tabs nav --> */}
+       
                 <ul
                   className="nav nav-tabs profile__tabs"
                   id="profile__tabs"
@@ -160,16 +164,17 @@ export default function Edit_users() {
                 {/* <!-- profile btns --> */}
                 <div className="profile__actions">
                   <a
-                    href="#modal-status3"
-                    className="profile__action profile__action--banned open-modal"
+                    href="#"
+                    className="profile__action profile__action--banned"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                       <path d="M12,13a1.49,1.49,0,0,0-1,2.61V17a1,1,0,0,0,2,0V15.61A1.49,1.49,0,0,0,12,13Zm5-4V7A5,5,0,0,0,7,7V9a3,3,0,0,0-3,3v7a3,3,0,0,0,3,3H17a3,3,0,0,0,3-3V12A3,3,0,0,0,17,9ZM9,7a3,3,0,0,1,6,0V9H9Zm9,12a1,1,0,0,1-1,1H7a1,1,0,0,1-1-1V12a1,1,0,0,1,1-1H17a1,1,0,0,1,1,1Z" />
                     </svg>
                   </a>
                   <a
-                    href="#modal-delete3"
-                    className="profile__action profile__action--delete open-modal"
+                    href="#"
+                    className="profile__action profile__action--delete "
+                    onClick={()=>deleteUser(params.id)}
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                       <path d="M10,18a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,10,18ZM20,6H16V5a3,3,0,0,0-3-3H11A3,3,0,0,0,8,5V6H4A1,1,0,0,0,4,8H5V19a3,3,0,0,0,3,3h8a3,3,0,0,0,3-3V8h1a1,1,0,0,0,0-2ZM10,5a1,1,0,0,1,1-1h2a1,1,0,0,1,1,1V6H10Zm7,14a1,1,0,0,1-1,1H8a1,1,0,0,1-1-1V8H17Zm-3-1a1,1,0,0,0,1-1V11a1,1,0,0,0-2,0v6A1,1,0,0,0,14,18Z" />
@@ -263,37 +268,9 @@ export default function Edit_users() {
                               </div>
                             </div>
 
-                            <div className="col-12 col-md-6 col-lg-12 col-xl-6">
-                              <div className="sign__group">
-                                <label className="sign__label" for="subscription">
-                                  Subscription
-                                </label>
-                                <select
-                                  className="js-example-basic-single"
-                                  id="subscription"
-                                >
-                                  <option value="Basic">Basic</option>
-                                  <option value="Premium">Premium</option>
-                                  <option value="Cinematic">Cinematic</option>
-                                </select>
-                              </div>
-                            </div>
+                            
 
-                            <div className="col-12 col-md-6 col-lg-12 col-xl-6">
-                              <div className="sign__group">
-                                <label className="sign__label" for="rights">
-                                  Rights
-                                </label>
-                                <select
-                                  className="js-example-basic-single"
-                                  id="rights"
-                                >
-                                  <option value="User">User</option>
-                                  <option value="Moderator">Moderator</option>
-                                  <option value="Admin">Admin</option>
-                                </select>
-                              </div>
-                            </div>
+                           
 
                             <div className="col-12">
                               <button className="sign__btn" type="button">

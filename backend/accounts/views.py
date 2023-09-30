@@ -10,6 +10,11 @@ from rest_framework import viewsets
 from rest_framework.decorators import action
 from django.core.mail import send_mail
 from accounts.models import User
+import os
+import dotenv
+
+
+dotenv.load_dotenv()
 
 # Generate Token Manually
 def get_tokens_for_user(user):
@@ -80,7 +85,8 @@ class UserPasswordResetView(APIView):
     return Response({'msg':'Password Reset Successfully'}, status=status.HTTP_200_OK)
   
 class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
+    admin_email = os.environ['EMAIL_USER']
+    queryset = User.objects.exclude(email=admin_email)
     serializer_class = UserSerializer
 
     @action(detail=True, methods=['post'])
@@ -90,11 +96,17 @@ class UserViewSet(viewsets.ModelViewSet):
         user.save()
         subject = 'Your account has been approved'
         message = 'Dear {},\n\nYour account has been approved. Thank you for joining us!'.format(user.email)
-        from_email = 'aliyan.ashraf46@gmail.com'  # Change this to your email address
+        from_email = os.environ['EMAIL_USER']   # Change this to your email address
         to_email = [user.email]
 
         send_mail(subject, message, from_email, to_email, fail_silently=False)
 
         serializer = self.get_serializer(user)
         return Response(serializer.data,status=status.HTTP_200_OK)
+    
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        self.perform_destroy(instance)
+        return Response(status=status.HTTP_204_NO_CONTENT)
+      
 
